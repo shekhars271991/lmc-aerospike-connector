@@ -1,0 +1,12 @@
+FROM lmcache/vllm-openai:v0.4.2
+
+COPY . /tmp/lmc-aerospike-backend/
+
+# python is /opt/venv/bin/python but pip is missing from the venv.
+# Bootstrap pip into the venv, then install everything there.
+RUN python -m ensurepip --upgrade && \
+    python -m pip install --no-cache-dir "aerospike>=19.0.0" && \
+    python -m pip install --no-cache-dir /tmp/lmc-aerospike-backend/ && \
+    rm -rf /tmp/lmc-aerospike-backend/
+
+RUN python -c "from lmc_aerospike_backend import AerospikeConnectorAdapter; print('Aerospike plugin OK')"

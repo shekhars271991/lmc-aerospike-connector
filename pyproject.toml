@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lmc-aerospike-backend"
+version = "0.1.0"
+description = "Aerospike remote storage backend plugin for LMCache"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+dependencies = [
+    "aerospike>=19.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+]
+
+[tool.setuptools.packages.find]
+include = ["lmc_aerospike_backend*"]
