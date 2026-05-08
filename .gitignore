@@ -37,3 +37,6 @@ htmlcov/
 .vscode/
 *.swp
 .DS_Store
+
+# Local Aerospike license / features (do not commit)
+features.conf
